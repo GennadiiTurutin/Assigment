@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="Gennadii Turutin" content="">
+<link rel="icon" href="static/images/logo.png">
+<title>Gennadii Turutin</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Bokeh includes-->
+
+<link href="https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.css"
+rel="stylesheet" type="text/css">
+<script src="https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.js"></script>
+
+<link
+    href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.css"
+    rel="stylesheet" type="text/css">    
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.js"></script>
+
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.js"></script>
+<link
+    href="http://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.css"
+    rel="stylesheet" type="text/css">    
+
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-api-1.2.0.min.js"></script>
+
+<script type="text/javascript">
+    Bokeh.set_log_level("info");
+</script>
+
+</head>
+
+{% include "flash.html" %}
+{% block flash %}
+{% endblock %}
+
+<body>
+    <nav class="navbar navbar-dark bg-dark" id="nav">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="row">
+
+        <div class="col-lg-3 col-md-6 col-sm-12 my-2">
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             El. usage, Out. temperature / Time
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/?graph=GEN">All data</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/?graph=GEN_Y">Mean Yearly</a>
+              <a class="dropdown-item" href="/?graph=GEN_M">Mean Monthly</a>
+              <a class="dropdown-item" href="/?graph=GEN_W">Mean Weekly</a>
+              <a class="dropdown-item" href="/?graph=GEN_D">Mean Daily</a>
+              <a class="dropdown-item" href="/?graph=GEN_H">Mean Hourly</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12 my-2">
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Outside Temperature / Time
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/?graph=O_TEMP">All data</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/?graph=O_TEMP_Y">Mean Yearly</a>
+              <a class="dropdown-item" href="/?graph=O_TEMP_M">Mean Monthly</a>
+              <a class="dropdown-item" href="/?graph=O_TEMP_W">Mean Weekly</a>
+              <a class="dropdown-item" href="/?graph=O_TEMP_D">Mean Daily</a>
+              <a class="dropdown-item" href="/?graph=O_TEMP_H">Mean Hourly</a>
+            </div>
+          </div>
+        </div>
+     
+        <div class="col-lg-3 col-md-6 col-sm-12 my-2">
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Electricity usage / Time 
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/?graph=EL_U">All data</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/?graph=EL_U_Y">Mean Yearly</a>
+              <a class="dropdown-item" href="/?graph=EL_U_M">Mean Monthly</a>
+              <a class="dropdown-item" href="/?graph=EL_U_W">Mean Weekly</a>
+              <a class="dropdown-item" href="/?graph=EL_U_D">Mean Daily</a>
+              <a class="dropdown-item" href="/?graph=EL_U_H">Mean Hourly</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-6 col-sm-12 my-2">
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Electricity usage / Outside Temperature
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="/?graph=C_EL_U/O_TEMP">All data</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/?graph=C_EL_U/O_TEMP_Y">Mean Yearly</a>
+              <a class="dropdown-item" href="/?graph=C_EL_U/O_TEMP_M">Mean Monthly</a>
+              <a class="dropdown-item" href="/?graph=C_EL_U/O_TEMP_W">Mean Weekly</a>
+              <a class="dropdown-item" href="/?graph=C_EL_U/O_TEMP_D">Mean Daily</a>
+              <a class="dropdown-item" href="/?graph=C_EL_U/O_TEMP_H">Mean Hourly</a>
+            </div>
+          </div>
+
+        </div>
+        </div>
+
+      </div>
+    </nav>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 my-5">
+        {{ script|safe }}
+        {{ div|safe }}  
+    </div>
+
+    
+</body>
+
+<script type="text/javascript">
+  $( "#flash" ).ready(function() {
+  $( "#flash" ).fadeOut(1000);
+  });
+</script>
+
+<script>
+  jQuery(function($) {
+      var path = window.location.href;
+      $('nav a').each(function() {
+       if (this.href === path) {
+        $(this).addClass('active');
+       }
+      });
+     });
+</script>
+
+</html>
